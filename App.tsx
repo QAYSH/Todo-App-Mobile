@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.tsx
+import React from 'react';
+import { ConvexProvider, ConvexReactClient } from 'convex/react';
+import { ThemeProvider } from './src/theme/ThemeContext';
+import { TodoScreen } from './src/screens/TodoScreen';
+
+// Use your production Convex URL
+const convex = new ConvexReactClient('https://compassionate-ocelot-616.convex.cloud');
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ConvexProvider client={convex}>
+      <ThemeProvider>
+        <TodoScreen />
+      </ThemeProvider>
+    </ConvexProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
